@@ -17,14 +17,19 @@ usuario=$(whoami)
 hostname=$(hostname)
 directorio_actual=$(pwd)
 
+# Colores ANSI
+verde="\e[32m"
+azul="\e[34m"
+blanco="\e[0m"
+
 # Nombre del archivo de salida (comienza con el nombre del comando y un timestamp para que sea único)
 archivo_salida="${nombre_comando}_resultado_$(date +'%Y%m%d_%H%M%S').txt"
 
-# Crear el contenido del "prompt" simulado
-prompt="┌──(${usuario}㉿${hostname})-[${directorio_actual}]
-└─$ ${comando}"
+# Crear el contenido del "prompt" simulado con colores
+prompt="${verde}┌──(${azul}${usuario}${verde}㉿${azul}${hostname}${verde})-[${azul}${directorio_actual}${verde}]
+└─${blanco}$ ${comando}"
 
-# Escribir el comando ejecutado en el archivo de salida
+# Escribir el comando ejecutado en el archivo de salida con colores
 echo -e "$prompt" > "$archivo_salida"
 
 # Ejecutar el comando y guardar la salida en el archivo de salida
